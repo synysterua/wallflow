@@ -20,7 +20,7 @@ async function callGemini(prompt: string): Promise<string> {
           thinkingConfig: { thinkingBudget: 0 },
         },
       }),
-      signal: AbortSignal.timeout(8000),
+      signal: AbortSignal.timeout(12000),
     });
 
     if (!res.ok) return "";

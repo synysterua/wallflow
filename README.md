@@ -25,6 +25,29 @@ Multi-tenant SaaS built with Next.js 16, Supabase, Stripe and Gemini. Production
 
 ![Wallflow dashboard](docs/dashboard.gif)
 
+## Screenshots
+
+**Dashboard** — AI Insights, quality scores, live activity feed
+![Dashboard](docs/screenshots/dashboard.png)
+
+**Customize** — layout, accent color, watermark (plan-gated)
+![Customize](docs/screenshots/customize.png)
+
+**Billing** — Free vs Pro with Stripe Checkout
+![Billing](docs/screenshots/billing.png)
+
+**Settings** — workspace, account, API-key status
+![Settings](docs/screenshots/settings.png)
+
+**Public collect form** — shareable link, no account needed
+![Collect form](docs/screenshots/collect.png)
+
+**Embeddable widget** — the "wall of love"
+![Widget](docs/screenshots/widget.png)
+
+**Sign in**
+![Login](docs/screenshots/login.png)
+
 ## Setup in 5 minutes
 
 1. Clone repo
