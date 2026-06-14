@@ -101,3 +101,21 @@ Next.js 16 (App Router) · TypeScript strict · Tailwind v4 · Framer Motion · 
 - Widget CSP: `frame-ancestors *`, `img-src https:`
 - Stripe webhooks: signature verification with `STRIPE_WEBHOOK_SECRET`
 - Zero hardcoded secrets — all via `process.env`
+
+## What's included
+
+- Full Next.js 16 source (TypeScript strict, 0 build/type errors)
+- Supabase schema + migrations + Row-Level Security
+- AI quality scoring & Insights (Gemini) — runs on the free tier
+- Stripe Checkout + subscription lifecycle webhooks
+- Embeddable widget + loader script (works on any site)
+- Premium dark UI with a reusable visual-experience layer
+- Live production deployment + seed script for instant demo data
+
+Runs entirely on **free tiers** (Supabase + Vercel + Gemini); Stripe is the only paid
+dependency and is optional until you charge customers.
+
+## License & ownership
+
+Commercial codebase offered for acquisition — **not open source**. All rights reserved.
+Full ownership, code, and rights transfer to the buyer on completion of sale.
