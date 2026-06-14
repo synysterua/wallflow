@@ -3,6 +3,8 @@
 AI-powered testimonial collection, moderation, and embedding.
 Multi-tenant SaaS built with Next.js 16, Supabase, Stripe and Gemini. Production-ready.
 
+![Wallflow](docs/hero.png)
+
 ## 🚀 Live demo
 
 **https://wallflow-one.vercel.app**
@@ -10,6 +12,10 @@ Multi-tenant SaaS built with Next.js 16, Supabase, Stripe and Gemini. Production
 - Landing page with a real, embedded wall of love
 - Public widget: `https://wallflow-one.vercel.app/widget/cafecafe000000000000000000000000`
 - Public collect form: `https://wallflow-one.vercel.app/collect/cafecafe000000000000000000000000`
+
+### Dashboard — AI scoring, live activity & insights
+
+![Wallflow dashboard](docs/dashboard.png)
 
 ## Setup in 5 minutes
 
