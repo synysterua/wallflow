@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { CheckCircle2, XCircle } from "lucide-react";
+import { AIPulse } from "@/components/ui/AIStateIndicator";
 
 interface Props {
   plan: string;
@@ -68,9 +69,9 @@ export default function BillingClient({ plan, stripeConfigured, success, cancele
         </div>
       )}
 
-      <div className="grid sm:grid-cols-2 gap-4">
+      <div className="grid sm:grid-cols-2 gap-4 items-start">
         {/* Free */}
-        <div className={`glass rounded-xl p-6 space-y-4 ${!isPro ? "border-indigo-500/30 shadow-[0_0_20px_rgba(99,102,241,0.1)]" : ""}`}>
+        <div className="glass rounded-2xl p-6 space-y-4">
           <div>
             <h2 className="text-lg font-bold text-zinc-100">Free</h2>
             <p className="text-2xl font-bold text-zinc-100 mt-1">
@@ -96,7 +97,7 @@ export default function BillingClient({ plan, stripeConfigured, success, cancele
         </div>
 
         {/* Pro */}
-        <div className={`rounded-xl p-6 space-y-4 bg-gradient-to-br from-indigo-600/20 to-purple-600/10 border ${isPro ? "border-indigo-500/50 shadow-[0_0_30px_rgba(99,102,241,0.2)]" : "border-indigo-500/30"}`}>
+        <div className="relative glow-ring rounded-2xl p-6 space-y-4 bg-gradient-to-br from-indigo-600/20 to-violet-600/5 border border-indigo-500/30 shadow-[0_0_45px_-12px_rgba(99,102,241,0.4)]">
           <div className="flex items-center gap-2">
             <h2 className="text-lg font-bold text-zinc-100">Pro</h2>
             <span className="bg-indigo-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">BEST VALUE</span>
@@ -107,7 +108,10 @@ export default function BillingClient({ plan, stripeConfigured, success, cancele
           <ul className="space-y-2">
             {PRO_FEATURES.map(({ label }) => (
               <li key={label} className="flex items-center gap-2 text-sm text-zinc-300">
-                <CheckCircle2 className="w-4 h-4 text-indigo-400 shrink-0" />
+                {label === "Full AI Insights panel"
+                  ? <span className="shrink-0"><AIPulse size={6} color="139, 92, 246" /></span>
+                  : <CheckCircle2 className="w-4 h-4 text-indigo-400 shrink-0" />
+                }
                 {label}
               </li>
             ))}

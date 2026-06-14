@@ -54,17 +54,17 @@ export default function CustomizeClient({
       </div>
 
       {/* Layout */}
-      <section className="glass rounded-xl p-5 space-y-4">
+      <section className="glass-strong rounded-2xl p-5 space-y-4">
         <h2 className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">Layout</h2>
         <div className="grid grid-cols-3 gap-3">
           {LAYOUTS.map(({ value, label, desc }) => (
             <button
               key={value}
               onClick={() => setLayout(value)}
-              className={`text-left border rounded-xl p-3 transition-all ${
+              className={`relative text-left rounded-xl p-3 transition-all ${
                 layout === value
-                  ? "border-indigo-500/50 bg-indigo-500/10 shadow-[0_0_15px_rgba(99,102,241,0.15)]"
-                  : "border-white/5 bg-white/[0.02] hover:border-white/10"
+                  ? "glow-ring bg-indigo-500/10 shadow-[0_0_20px_-6px_rgba(99,102,241,0.5)]"
+                  : "border border-white/5 bg-white/[0.02] hover:border-white/10"
               }`}
             >
               <p className={`text-sm font-medium ${layout === value ? "text-indigo-300" : "text-zinc-300"}`}>{label}</p>
@@ -75,7 +75,7 @@ export default function CustomizeClient({
       </section>
 
       {/* Accent color */}
-      <section className="glass rounded-xl p-5 space-y-4">
+      <section className="glass-strong rounded-2xl p-5 space-y-4">
         <div className="flex items-center justify-between">
           <h2 className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">Accent color</h2>
           {!isPro && (
@@ -100,7 +100,7 @@ export default function CustomizeClient({
       </section>
 
       {/* Watermark */}
-      <section className="glass rounded-xl p-5 space-y-4">
+      <section className="glass-strong rounded-2xl p-5 space-y-4">
         <div className="flex items-center justify-between">
           <h2 className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">
             &ldquo;Powered by Wallflow&rdquo; watermark
