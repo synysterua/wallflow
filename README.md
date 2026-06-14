@@ -17,9 +17,9 @@ Multi-tenant SaaS built with Next.js 16, Supabase, Stripe and Gemini. Production
 
 ![Wallflow demo](docs/demo.gif)
 
-### Dashboard — AI scoring, live activity & insights
+### Dashboard — approve a testimonial, AI score & live activity update in real time
 
-![Wallflow dashboard](docs/dashboard.png)
+![Wallflow dashboard](docs/dashboard.gif)
 
 ## Setup in 5 minutes
 
