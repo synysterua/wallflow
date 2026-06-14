@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Copy, Check } from "lucide-react";
+import { AIPulse } from "@/components/ui/AIStateIndicator";
 
 interface Props {
   themes: string[];
@@ -22,10 +23,11 @@ export default function InsightsPanelClient({ themes, sentiment, oneliner, count
   }
 
   return (
-    <div className="glass rounded-xl border-l-2 border-indigo-500 p-5 space-y-4">
+    <div className="glass-strong glow-ring rounded-2xl p-5 space-y-4">
       <div className="flex items-center gap-2">
-        <span className="text-sm font-bold text-zinc-100">✨ AI Insights</span>
-        <span className="text-xs bg-zinc-800 text-zinc-500 border border-white/5 px-2 py-0.5 rounded-full">
+        <AIPulse size={8} color="139, 92, 246" />
+        <span className="text-sm font-bold text-zinc-100">AI Insights</span>
+        <span className="text-[11px] glass px-2 py-0.5 rounded-full text-zinc-400 ml-auto">
           Powered by Gemini
         </span>
       </div>
@@ -36,12 +38,12 @@ export default function InsightsPanelClient({ themes, sentiment, oneliner, count
           <span className="text-zinc-500">Overall sentiment</span>
           <span className="font-bold text-zinc-200">{sentiment}%</span>
         </div>
-        <div className="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+        <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: `${sentiment}%` }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full shadow-[0_0_10px_rgba(99,102,241,0.5)]"
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="h-full bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-400 rounded-full shadow-[0_0_12px_rgba(139,92,246,0.6)]"
           />
         </div>
       </div>

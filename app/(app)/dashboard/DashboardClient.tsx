@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Sparkles, Copy, Check, ExternalLink } from "lucide-react";
+import { AIScore } from "@/components/ui/AIStateIndicator";
 
 interface Testimonial {
   id: string;
@@ -35,20 +36,6 @@ const STATUS_COLORS: Record<string, string> = {
   hidden: "bg-zinc-800 text-zinc-500 border border-white/5",
 };
 
-function AiScorePill({ score, flags }: { score: number | null; flags: string[] }) {
-  if (score === null) return <span className="text-zinc-700 text-xs font-mono">—</span>;
-  const color =
-    score >= 80 ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" :
-    score >= 50 ? "bg-amber-500/10 text-amber-400 border-amber-500/20" :
-    "bg-red-500/10 text-red-400 border-red-500/20";
-  const tooltip = flags.length > 0 ? flags.join(", ") : "No issues";
-  return (
-    <span title={tooltip} className={`text-xs font-bold px-1.5 py-0.5 rounded border cursor-help ${color}`}>
-      {score}
-    </span>
-  );
-}
-
 export default function DashboardClient({ workspace, testimonials, appUrl }: Props) {
   const [items, setItems] = useState(testimonials);
   const [copiedEmbed, setCopiedEmbed] = useState(false);
@@ -58,7 +45,6 @@ export default function DashboardClient({ workspace, testimonials, appUrl }: Pro
 
   const embedSnippet = `<script src="${appUrl}/embed.js" data-token="${workspace.public_token}" async></script>`;
   const collectUrl = `${appUrl}/collect/${workspace.public_token}`;
-  const pendingCount = items.filter((t) => t.status === "pending").length;
 
   async function updateStatus(id: string, status: string): Promise<void> {
     setLoadingId(id);
@@ -102,19 +88,9 @@ export default function DashboardClient({ workspace, testimonials, appUrl }: Pro
   }
 
   return (
-    <div className="space-y-5 max-w-5xl">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <h1 className="text-xl font-bold text-zinc-100">Dashboard</h1>
-        {pendingCount > 0 && (
-          <span className="bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs font-bold px-3 py-1 rounded-full">
-            {pendingCount} pending review
-          </span>
-        )}
-      </div>
-
+    <div className="space-y-5">
       {/* Embed snippet */}
-      <div className="glass rounded-xl p-5 space-y-3">
+      <div className="glass rounded-2xl p-5 space-y-3">
         <h2 className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Embed widget</h2>
         <div className="flex gap-2">
           <code className="flex-1 bg-zinc-950 border border-white/5 rounded-lg px-3 py-2 text-xs text-emerald-400 overflow-x-auto whitespace-nowrap font-mono">
@@ -150,7 +126,7 @@ export default function DashboardClient({ workspace, testimonials, appUrl }: Pro
       </div>
 
       {/* Testimonials */}
-      <div className="glass rounded-xl overflow-hidden">
+      <div className="glass rounded-2xl overflow-hidden">
         <div className="px-5 py-3.5 border-b border-white/5 flex items-center justify-between">
           <h2 className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">
             Testimonials ({items.length})
@@ -212,7 +188,7 @@ export default function DashboardClient({ workspace, testimonials, appUrl }: Pro
                       <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${STATUS_COLORS[t.status] ?? "bg-zinc-800 text-zinc-500"}`}>
                         {t.status}
                       </span>
-                      <AiScorePill score={t.ai_score} flags={t.ai_flags} />
+                      <AIScore score={t.ai_score} flags={t.ai_flags} />
                     </div>
                     <p className="text-sm text-zinc-400 line-clamp-2">{t.content}</p>
                     <p className="text-xs text-zinc-600 mt-1">

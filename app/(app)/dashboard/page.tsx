@@ -3,6 +3,9 @@ import { createServerSupabaseClient, createServiceClient } from "@/lib/supabase/
 import { redirect } from "next/navigation";
 import DashboardClient from "./DashboardClient";
 import InsightsPanel from "./InsightsPanel";
+import { SystemStatusBar } from "@/components/ui/SystemStatusBar";
+import { LiveActivityFeed } from "@/components/ui/LiveActivityFeed";
+import { Activity } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -58,31 +61,65 @@ export default async function DashboardPage() {
     .order("created_at", { ascending: false });
 
   const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
-  const rows = testimonials ?? [];
+  const rows = (testimonials ?? []).map((t) => ({
+    ...t,
+    ai_score: t.ai_score ?? null,
+    ai_flags: Array.isArray(t.ai_flags) ? (t.ai_flags as string[]) : [],
+  }));
   const approvedCount = rows.filter((t) => t.status === "approved").length;
+  const pendingCount = rows.filter((t) => t.status === "pending").length;
+  const aiActive = !!process.env.GEMINI_API_KEY;
+  const recent = rows.slice(0, 6);
 
   return (
-    <div className="max-w-5xl space-y-6">
+    <div className="max-w-6xl space-y-6">
+      {/* System status */}
+      <SystemStatusBar
+        aiActive={aiActive}
+        plan={workspace.plan}
+        total={rows.length}
+        approved={approvedCount}
+        pending={pendingCount}
+      />
+
+      {/* AI Insights */}
       {approvedCount >= 3 && (
         <Suspense fallback={<InsightsSkeleton />}>
           <InsightsPanel workspaceId={workspace.id} approvedCount={approvedCount} />
         </Suspense>
       )}
 
-      <DashboardClient
-        workspace={{
-          id: workspace.id,
-          name: workspace.name,
-          public_token: workspace.public_token,
-          plan: workspace.plan,
-        }}
-        testimonials={rows.map((t) => ({
-          ...t,
-          ai_score: t.ai_score ?? null,
-          ai_flags: Array.isArray(t.ai_flags) ? (t.ai_flags as string[]) : [],
-        }))}
-        appUrl={appUrl}
-      />
+      {/* Intelligence layout: management table (left) + live activity (right) */}
+      <div className="grid lg:grid-cols-3 gap-6 items-start">
+        <div className="lg:col-span-2">
+          <DashboardClient
+            workspace={{
+              id: workspace.id,
+              name: workspace.name,
+              public_token: workspace.public_token,
+              plan: workspace.plan,
+            }}
+            testimonials={rows}
+            appUrl={appUrl}
+          />
+        </div>
+
+        {recent.length > 0 && (
+          <aside className="glass rounded-2xl p-5 lg:sticky lg:top-20">
+            <div className="flex items-center gap-2 mb-3">
+              <Activity className="w-4 h-4 text-indigo-400" />
+              <h2 className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">
+                Live activity
+              </h2>
+              <span className="relative flex h-1.5 w-1.5 ml-1">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60 animate-ping" />
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
+              </span>
+            </div>
+            <LiveActivityFeed items={recent} />
+          </aside>
+        )}
+      </div>
     </div>
   );
 }
