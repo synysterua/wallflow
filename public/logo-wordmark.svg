@@ -1,0 +1,15 @@
+<svg width="240" height="64" viewBox="0 0 240 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="w-bg" x1="14" y1="12" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6366F1"/>
+      <stop offset="0.55" stop-color="#7C3AED"/>
+      <stop offset="1" stop-color="#8B5CF6"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(8 12) scale(0.625)">
+    <rect width="64" height="64" rx="16" fill="url(#w-bg)"/>
+    <path d="M16 20 L24 44 L32 30 L40 44 L48 20" stroke="#FFFFFF" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="32" cy="29.5" r="2.8" fill="#22D3EE"/>
+  </g>
+  <text x="64" y="41" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="30" font-weight="700" letter-spacing="-0.5" fill="#FAFAFA">Wallflow</text>
+</svg>

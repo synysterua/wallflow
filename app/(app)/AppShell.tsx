@@ -12,6 +12,7 @@ import {
   Menu,
   X,
 } from "lucide-react";
+import { Logo } from "@/components/ui/Logo";
 
 const NAV = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -36,9 +37,7 @@ export default function AppShell({ children, workspaceName, plan, email, token }
     <>
       <div className="h-16 flex items-center px-5 border-b border-white/5">
         <Link href="/dashboard" className="flex items-center gap-2" onClick={() => setOpen(false)}>
-          <div className="w-7 h-7 rounded-md bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-[0_0_10px_rgba(99,102,241,0.4)]">
-            <span className="text-white font-bold text-xs">W</span>
-          </div>
+          <Logo size={28} className="rounded-md shadow-[0_0_10px_rgba(99,102,241,0.4)]" />
           <span className="font-bold text-zinc-100 tracking-tight">Wallflow</span>
         </Link>
       </div>

@@ -7,6 +7,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { HeroBackground } from "@/components/ui/HeroBackground";
 import { AIPulse } from "@/components/ui/AIStateIndicator";
+import { Logo } from "@/components/ui/Logo";
 
 const AUTH_ERRORS: Record<string, string> = {
   "Invalid login credentials": "Incorrect email or password.",
@@ -80,9 +81,7 @@ export default function LoginPage() {
         className="relative glass-strong glow-ring rounded-2xl p-8 w-full max-w-sm"
       >
         <Link href="/" className="flex items-center justify-center gap-2 mb-7">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-[0_0_18px_rgba(99,102,241,0.5)]">
-            <span className="text-white font-bold text-sm">W</span>
-          </div>
+          <Logo size={32} className="rounded-lg shadow-[0_0_18px_rgba(99,102,241,0.5)]" />
           <span className="font-bold text-lg text-zinc-100 tracking-tight">Wallflow</span>
         </Link>
 

@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="public/logo.svg" width="76" height="76" alt="Wallflow logo" />
+</p>
+
 # Wallflow — Embeddable Testimonial Widget SaaS
 
 AI-powered testimonial collection, moderation, and embedding.
